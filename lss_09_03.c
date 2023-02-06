@@ -13,7 +13,7 @@ int lss_09_03(int n, double* A, double* B, double* X, double* tmp)
 
 	init_tmp(tmp, n);
 
-	if (mode.dmode == True)
+	if ( True == True)
 	{
 		printf("\n(0) Starting calculations\n");
 		print_mv(A, B, n);
