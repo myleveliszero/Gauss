@@ -1,7 +1,5 @@
 ﻿#include "lss_09_03.h"
 
-code mymode;
-
 int setup(const char* filename, double** A, double** B, double** X, int* n);
 
 int parse_argv(int argc, char* argv[], const char** in_file, const char** out_file, int* pmode, int* tmode, int* hmode);
@@ -11,6 +9,8 @@ int write_to_file(const char* filename, double* X, int n, int success_code);
 void freespace(double* A, double* B, double* X);
 
 void hmode_instructions();
+
+code mode;
 
 int setup(const char* filename, double** A, double** B, double** X,int* n)
 {
@@ -137,9 +137,9 @@ int parse_argv(int argc, char* argv[], const char** in_file, const char** out_fi
 			else if (argv[i][1] == 'h') // if '?' also then, argv[i][1] == 'h' || argv[i][1] == '?'
 				*hmode = True;
 			else if (argv[i][1] == 'd')
-				mymode.dmode = True;
+				mode.dmode = True;
 			else if (argv[i][1] == 'e')
-				mymode.emode = True;
+				mode.emode = True;
 			else return -8;
 
 		}
@@ -213,8 +213,8 @@ int main(int argc, char* argv[])
 {
 	clock_t overallstart = clock();
 	int err_code = 0;
-	
-	// 
+
+ 
 	int hmode, tmode, pmode;
 
 	const char* input_file = NULL,
@@ -248,7 +248,7 @@ int main(int argc, char* argv[])
 	clock_t setup_start = clock();
 	err_code = setup(input_file, &A, &B, &X, &n);
 	clock_t setup_end = clock();
-	if (mymode.dmode == True)
+	if (mode.dmode == True)
 	{
 		printf("\n------****** DEBUG MODE [ON] ******------\n");
 		printf("Loading file: %lf sec \n", (double)(setup_end - setup_start) / (double)(CLOCKS_PER_SEC));
@@ -261,7 +261,7 @@ int main(int argc, char* argv[])
 	// Checking return code of function "setup"
 	if (err_code != 2)
 	{
-		if (mymode.emode == True)
+		if (mode.emode == True)
 		{
 			if (err_code == -2)
 			{	
@@ -307,7 +307,7 @@ int main(int argc, char* argv[])
 	clock_t end = clock();
 	free(tmp), tmp = NULL; 
 
-	if (mymode.dmode == True)
+	if (mode.dmode == True)
 	{
 		printf("The array X: \n");
 		print_arr(X, n, VECTOR);
@@ -321,12 +321,12 @@ int main(int argc, char* argv[])
 
 	if (tmode == True) printf("Execution time: %lf sec\n", (double)(end - start) / (double)(CLOCKS_PER_SEC));
 
-	if (mymode.dmode == True) printf("Writing array X(answer) to the ouput file\n");
+	if (mode.dmode == True) printf("Writing array X(answer) to the ouput file\n");
 	err_code = write_to_file(output_file, X, n, success_code);
 
 	if (err_code != 2)
 	{
-		if (mymode.emode == True)
+		if (mode.emode == True)
 			fprintf(stderr, "Can't write to a file");
 
 		return err_code;
@@ -336,7 +336,7 @@ int main(int argc, char* argv[])
 	freespace(A, B, X);
 
 	clock_t overallend = clock();
-	if (mymode.dmode == True)
+	if (mode.dmode == True)
 	{
 		printf("Overall execution time: %lf sec\n", (double)(overallend - overallstart) / (double)(CLOCKS_PER_SEC));
 		printf("\n------****** End of DEBUG ******------\n");

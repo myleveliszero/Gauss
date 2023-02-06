@@ -31,6 +31,7 @@ typedef struct code
 
 }code;
 
+extern code mode;
 
 size_t lss_memsize_09_03(int n);
 
