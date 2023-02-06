@@ -136,7 +136,7 @@ index max_elem(double* A, int len, size_t start)
 
 void change_row(double* A,double* B,double* tmp, int len, size_t i_1, size_t i_2)
 {
-	// меняем строку i_1 и строку i_2 местами
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ i_1 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ i_2 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	if (i_1 != i_2)
 	{
@@ -166,7 +166,7 @@ void change_row(double* A,double* B,double* tmp, int len, size_t i_1, size_t i_2
 
 void change_col(double* A,double* tmp, int len, size_t j_1, size_t j_2)
 {
-	// меняем столбец j_1 и столбец j_2 местами 
+	// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ j_1 пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ j_2 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
 
 	if (j_1 != j_2)
 	{
